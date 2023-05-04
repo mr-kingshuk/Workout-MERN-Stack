@@ -1,33 +1,21 @@
 import express  from "express";
+import { getWorkout, getWorkouts, createWorkout, deleteWorkout, updateWorkout } from "../controllers/workoutController.js";
 
 const router = express.Router();
 
 //GET all the workout document
-router.get('/', (req, res) =>{
-    res.json({msg: "GET all workouts"});
-});
+router.get('/', getWorkouts);
 
 //GET a single workout
-router.get('/:id', (req, res) =>{
-    const {id} = req.params;
-    res.json({msg: `GET the workout with ID ${id}`});
-});
+router.get('/:id', getWorkout);
 
 //POST a new workout
-router.post('/', (req, res) =>{
-    res.json({msg: "POST a new workout"});
-});
+router.post('/', createWorkout);
 
 //DELETE a workout
-router.delete('/:id', (req, res) =>{
-    const {id} = req.params;
-    res.json({msg: `DELETE the workout with id ${id}`});
-});
+router.delete('/:id', deleteWorkout);
 
 //Update a workout
-router.patch('/:id', (req, res) =>{
-    const {id} = req.params;
-    res.json({msg: `UPDATE the workout with id ${id}`});
-});
+router.patch('/:id',updateWorkout);
 
 export default router;

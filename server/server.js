@@ -3,8 +3,9 @@ import cors from 'cors';
 import * as dotenv from 'dotenv';
 dotenv.config();
 import mongoose from 'mongoose';
+import morgan from 'morgan';
 
-import router from './routes/workout.js';
+import workoutRoutes from './routes/workout.js';
 
 //getting enviroment variables
 const PORT = process.env.PORT;
@@ -16,13 +17,17 @@ const app = express();
 //middlewares
 app.use(cors());
 app.use(express.json());
+app.use(morgan('tiny'));
 app.use((req, res, next) => {
     console.log(req.path, req.method);
     next();
 });
 
 //routes
-app.use('/api/workouts/', router);
+app.get("/", (req, res) => {
+    res.json({ "msg": "hello world!!" })
+});
+app.use('/api/workouts/', workoutRoutes);
 
 //db connect
 mongoose.connect(MONGO_URI)
@@ -33,5 +38,6 @@ mongoose.connect(MONGO_URI)
         });
     })
     .catch((err) => {
+        console.log("!")
         console.log(err);
     });

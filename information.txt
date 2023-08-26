@@ -1,0 +1,2 @@
+this covers the entire, MERN stack crash course of Net Ninja, and the Mern Authentication playlist of Net Ninja (continued in same project)
+ 

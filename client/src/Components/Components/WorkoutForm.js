@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useWorkoutContext } from "../Hooks/useWorkoutContext";
+import { ACTIONS } from "../Context/Actions";
 
 const WorkoutForm = () => {
     const { dispatch } =  useWorkoutContext();
@@ -8,6 +9,7 @@ const WorkoutForm = () => {
     const [reps, setReps] = useState('');
     const [load, setLoad] = useState('');
     const [error, setError] = useState('');
+    const [emptyFields, setEmptyFields] = useState([]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -22,18 +24,22 @@ const WorkoutForm = () => {
             }
         });
 
+        //this returns the created Item
         const json = await response.json();
 
         if (!response.ok) {
             setError(json.error);
+            setEmptyFields(json.emptyFields);
         }
         else {
             setTitle('');
             setLoad('');
             setReps('');
             setError(null);
+            setEmptyFields([]);
             console.log("new workout added");
-            dispatch({type: 'CREATE_WORKOUT', payload: json})
+            //the action.type is to create a single workout, with the payload which is the array of documents or Javascript Objects created
+            dispatch({type: ACTIONS.CREATE_WORKOUT, payload: json})
         }
     }
 
@@ -47,6 +53,7 @@ const WorkoutForm = () => {
                 type="text"
                 onChange={(e) => setTitle(e.target.value)}
                 value={title}
+                className = {emptyFields.includes('title') ? 'error': ''}
             />
 
             <label>Load(in kgs):</label>
@@ -54,6 +61,7 @@ const WorkoutForm = () => {
                 type="number"
                 onChange={(e) => setLoad(e.target.value)}
                 value={load}
+                className = {emptyFields.includes('load') ? 'error': ''}
             />
 
             <label>Reps:</label>
@@ -61,6 +69,7 @@ const WorkoutForm = () => {
                 type="number"
                 onChange={(e) => setReps(e.target.value)}
                 value={reps}
+                className = {emptyFields.includes('reps') ? 'error': ''}
             />
 
             <button>Submit</button>

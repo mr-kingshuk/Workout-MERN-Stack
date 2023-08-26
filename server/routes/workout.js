@@ -1,5 +1,10 @@
-import express  from "express";
-import { getWorkout, getWorkouts, createWorkout, deleteWorkout, updateWorkout } from "../controllers/workoutController.js";
+import express from "express";
+
+import { getWorkout } from "../controllers/WorkoutController/getWorkout.js";
+import { getWorkouts } from "../controllers/WorkoutController/getWorkouts.js";
+import { createWorkout } from "../controllers/WorkoutController/createWorkout.js";
+import { deleteWorkout } from "../controllers/WorkoutController/deleteWorkout.js";
+import { updateWorkout } from "../controllers/WorkoutController/updateWorkout.js";
 
 const router = express.Router();
 
@@ -16,6 +21,6 @@ router.post('/', createWorkout);
 router.delete('/:id', deleteWorkout);
 
 //Update a workout
-router.patch('/:id',updateWorkout);
+router.patch('/:id', updateWorkout);
 
 export default router;

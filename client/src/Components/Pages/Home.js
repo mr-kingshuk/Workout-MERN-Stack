@@ -1,7 +1,10 @@
 import { useEffect } from 'react';
+import { useWorkoutContext } from '../Hooks/useWorkoutContext.js';
+import { ACTIONS } from '../Context/Actions.js';
+
+//components on this page
 import WorkoutDetails from '../Components/WorkoutDetails.js';
 import WorkoutForm from '../Components/WorkoutForm.js';
-import { useWorkoutContext } from '../Hooks/useWorkoutContext.js';
 
 const Home = () =>{
     const { workouts, dispatch } = useWorkoutContext();
@@ -12,7 +15,8 @@ const Home = () =>{
             const json = await response.json();
 
             if(response.ok){
-                dispatch({type: 'SET_WORKOUTS', payload: json})
+                //the action.type is to set all the workouts, with the payload which is the array of documents or Javascript Objects, containing all the workouts documents 
+                dispatch({type: ACTIONS.SET_WORKOUTS, payload: json})
             }
         };
         fetchWorkouts();

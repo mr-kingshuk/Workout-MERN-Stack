@@ -1,5 +1,10 @@
 import { createContext, useReducer } from "react";
-import { ACTIONS } from './Actions.js';
+
+const ACTIONS = {
+    SET_WORKOUTS : 'setWorkouts',
+    CREATE_WORKOUT : 'createWorkout',
+    DELETE_WORKOUT : 'deleteWorkout'
+}
 
 //creating a workout context that will hold the state(or reducer) and the update Function to the reducer
 //we will then be importing this context and use it wherever we want the state

@@ -16,7 +16,7 @@ const Home = () =>{
 
             if(response.ok){
                 //the action.type is to set all the workouts, with the payload which is the array of documents or Javascript Objects, containing all the workouts documents 
-                dispatch({type: ACTIONS.SET_WORKOUTS, payload: json})
+                dispatch({type: 'setWorkouts', payload: json})
             }
         };
         fetchWorkouts();

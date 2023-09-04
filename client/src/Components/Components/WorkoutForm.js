@@ -39,7 +39,7 @@ const WorkoutForm = () => {
             setEmptyFields([]);
             console.log("new workout added");
             //the action.type is to create a single workout, with the payload which is the array of documents or Javascript Objects created
-            dispatch({type: ACTIONS.CREATE_WORKOUT, payload: json})
+            dispatch({type: 'createWorkout', payload: json})
         }
     }
 

@@ -1,6 +1,5 @@
 import { useWorkoutContext } from "../Hooks/useWorkoutContext";
 import foramatDistanceToNow from 'date-fns/formatDistanceToNow';
-import { ACTIONS } from "../Context/Actions";
 
 const WorkoutDetails = ({ workout }) => {
   //getting only the dispatch function from the global state holding contextHook
@@ -15,7 +14,7 @@ const WorkoutDetails = ({ workout }) => {
 
     if(response.ok){
       //the action.type is to delete the workout, with the payload which is the array of document or Javascript Object, which is the deleted document.
-      dispatch({type: ACTIONS.DELETE_WORKOUT, payload: json})
+      dispatch({type: 'deleteWorkout', payload: json})
     }
   }
 

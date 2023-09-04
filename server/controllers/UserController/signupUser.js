@@ -21,7 +21,6 @@ const signupUser = async (req, res) => {
 
         //creating a jwt token
         const token = createToken(user._id);
-        console.log(token);
 
         res.status(200).json({email, token});
     }

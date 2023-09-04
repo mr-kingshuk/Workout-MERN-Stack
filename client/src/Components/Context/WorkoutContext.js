@@ -29,10 +29,11 @@ export const workoutsReducer = (state, action) => {
 // the reducer an function is present as value of the value parameter
 //this will be present in the index.js Component or the App.js component depending on the functionality.
 export const WorkoutContextProvider = ({ children }) =>{
-    // const [user, setUser] = useState([]);
+
     const [state, dispatch] = useReducer(workoutsReducer, {
         workouts: null
     });
+
     return(
         <WorkoutContext.Provider value = {{...state, dispatch}}>
             {children}

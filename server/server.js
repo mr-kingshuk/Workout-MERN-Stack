@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import morgan from 'morgan';
 
 import workoutRoutes from './routes/workout.js';
+import  userRoutes from './routes/user.js';
 
 //getting enviroment variables
 const PORT = process.env.PORT;
@@ -28,6 +29,7 @@ app.get("/", (req, res) => {
     res.json({ "msg": "hello world!!" })
 });
 app.use('/api/workouts/', workoutRoutes);
+app.use('/api/user/', userRoutes);
 
 //db connect
 mongoose.connect(MONGO_URI)

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useWorkoutContext } from "../Hooks/useWorkoutContext";
-import { ACTIONS } from "../Context/Actions";
 
 const WorkoutForm = () => {
     const { dispatch } =  useWorkoutContext();
@@ -37,7 +36,6 @@ const WorkoutForm = () => {
             setReps('');
             setError(null);
             setEmptyFields([]);
-            console.log("new workout added");
             //the action.type is to create a single workout, with the payload which is the array of documents or Javascript Objects created
             dispatch({type: 'createWorkout', payload: json})
         }

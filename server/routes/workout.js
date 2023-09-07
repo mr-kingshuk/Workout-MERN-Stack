@@ -6,7 +6,11 @@ import { createWorkout } from "../controllers/WorkoutController/createWorkout.js
 import { deleteWorkout } from "../controllers/WorkoutController/deleteWorkout.js";
 import { updateWorkout } from "../controllers/WorkoutController/updateWorkout.js";
 
+import requireAuth from "../middlewares/requireAuth.js";
+
 const router = express.Router();
+
+router.use(requireAuth);
 
 //GET all the workout document
 router.get('/', getWorkouts);

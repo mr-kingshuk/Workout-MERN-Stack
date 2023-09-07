@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 //create a new workout
 export const createWorkout = async(req, res) =>{
     const {title, load, reps} = req.body;
+    const _id = req.user;
 
     //array to handle errors
     let emptyFields = [];
@@ -24,7 +25,7 @@ export const createWorkout = async(req, res) =>{
 
     //add doc to db
     try{
-        const workout = await Workout.create({title, load, reps});
+        const workout = await Workout.create({title, load, reps, user_id : _id});
         return res.status(200).json(workout);
     } 
     catch(err){

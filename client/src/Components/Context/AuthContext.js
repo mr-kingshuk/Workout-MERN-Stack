@@ -1,17 +1,15 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useEffect } from "react";
 
 export const AuthContext = createContext();
 
 const ACTIONS = {
     'LOGIN': 'login',
-    'SIGNUP': 'signup',
     'LOGOUT': 'logout'
 }
 
 const authReducer = (state, action) => {
     switch(action.type){
         case ACTIONS.LOGIN:
-        case ACTIONS.SIGNUP:
             return { user : action.payload };
         case ACTIONS.LOGOUT:         
             return { user : null }
@@ -24,7 +22,15 @@ export const AuthContextProvider = ({ children }) => {
         user: null
     });
 
-    console.log(`AuthContext state : ${state}`);
+    //empty dependency array so, it renders only once.
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        
+        if(user){
+            dispatch({type: 'login', payload: user})
+        }
+    }, []);
+
 
     return(
         <AuthContext.Provider value = {{...state, dispatch}}>

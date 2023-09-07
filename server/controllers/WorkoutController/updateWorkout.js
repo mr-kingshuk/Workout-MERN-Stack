@@ -4,12 +4,13 @@ import mongoose from "mongoose";
 //update the workout
 export const updateWorkout = async(req, res) =>{
     const {id} = req.params;
+    const user_id = req.body;
 
     if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).json({error: "No such workout"});
     }
 
-    const workout = await Workout.findOneAndUpdate({_id : id}, {
+    const workout = await Workout.findOneAndUpdate({_id : id, user_id : user_id}, {
         ...req.body
     });
     if(!workout){
